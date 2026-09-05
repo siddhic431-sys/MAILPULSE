@@ -1,12 +1,12 @@
 import { Queue, QueueEvents, JobsOptions } from 'bullmq';
-import { redisConfig } from '../config/redis';
+import { bullRedisConfig } from '../config/redis';
 import { EmailJobData } from '../types';
 import { logger } from '../utils/logger';
 
 export const EMAIL_QUEUE_NAME = 'mailpulse-email-sending';
 
 export const emailQueue = new Queue<EmailJobData>(EMAIL_QUEUE_NAME, {
-  connection: redisConfig,
+  connection: bullRedisConfig,
   defaultJobOptions: {
     attempts: 3,
     backoff: {
@@ -19,7 +19,7 @@ export const emailQueue = new Queue<EmailJobData>(EMAIL_QUEUE_NAME, {
 });
 
 export const emailQueueEvents = new QueueEvents(EMAIL_QUEUE_NAME, {
-  connection: redisConfig,
+  connection: bullRedisConfig,
 });
 
 emailQueue.on('error', (err) => {

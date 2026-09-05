@@ -1,5 +1,5 @@
 import { Worker, Job } from 'bullmq';
-import { redisConfig } from '../config/redis';
+import { bullRedisConfig } from '../config/redis';
 import { EMAIL_QUEUE_NAME, addEmailJob } from '../queues/emailQueue';
 import { prisma } from '../lib/prisma';
 import { env } from '../config/env';
@@ -171,7 +171,7 @@ export function createEmailWorker(): Worker<EmailJobData> {
       }
     },
     {
-      connection: redisConfig,
+      connection: bullRedisConfig,
       concurrency,
     }
   );

@@ -9,8 +9,12 @@ import {
   SlackStatus,
 } from '../types';
 
+const apiBase = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL.replace(/\/$/, '')}/api`
+  : '/api';
+
 export const api = axios.create({
-  baseURL: '/api',
+  baseURL: apiBase,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
@@ -19,7 +23,7 @@ export const api = axios.create({
 
 // Authentication
 export const authApi = {
-  getGoogleLoginUrl: () => '/api/auth/google',
+  getGoogleLoginUrl: () => `${apiBase}/auth/google`,
   devLogin: async (): Promise<{ success: boolean; user: User }> => {
     const res = await api.post('/auth/dev-login');
     return res.data;
@@ -90,7 +94,7 @@ export const emailApi = {
 
 // Slack
 export const slackApi = {
-  getConnectUrl: () => '/api/slack/connect',
+  getConnectUrl: () => `${apiBase}/slack/connect`,
   getStatus: async (): Promise<SlackStatus> => {
     const res = await api.get('/slack/status');
     return res.data;

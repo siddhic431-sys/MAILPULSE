@@ -26,6 +26,7 @@ const envSchema = z.object({
   PORT: z.coerce.number().default(5000),
   DATABASE_URL: z.string().default('postgresql://mailpulse:mailpulse_password@localhost:5432/mailpulse_db?schema=public'),
   
+  REDIS_URL: z.string().optional(),
   REDIS_HOST: z.string().default('localhost'),
   REDIS_PORT: z.coerce.number().default(6379),
   REDIS_PASSWORD: z.string().optional().default('redis_password'),
