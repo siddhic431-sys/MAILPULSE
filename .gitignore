@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+
+# Production builds
+dist/
+build/
+
+# Environment files
+.env
+.env.*
+*.env
+*.env.*
+**/.env
+**/.env.*
+!**/.env.example
+cookies*.txt
+cookies.txt
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Editor & OS
+.vscode/
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
+
+# Docker volumes
+.docker-data/
+postgres_data/
+redis_data/
+es_data/
+
+# Prisma
+backend/prisma/*.db
+backend/prisma/*.db-journal
